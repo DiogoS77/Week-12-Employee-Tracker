@@ -30,4 +30,23 @@ const doMenuQuestions = async () => {
     }
 };
 
+const view_departments = async () => {
+    const results = await db.getDepartments();
+    console.table(results);
+    doMenuQuestions();
+};
+
+const view_roles = async () => {
+    const results = await db.getRoles();
+    console.table(results);
+    doMenuQuestions();
+};
+
+const view_employees = async () => {
+    const results = await db.getEmployees();
+    console.table(results);
+    doMenuQuestions();
+};
+
+
 doMenuQuestions();
