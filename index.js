@@ -102,6 +102,29 @@ const add_employee = async () => {
     doMenuQuestions();
 };
 
+const update_role = async () => {
+    const [employeeList, roleResults] = await Promise.all([db.getEmployees(), db.getRoles()]);
 
+    const employeeQuestion = updateEmployeeRoleQuestions[0];
+    employeeList.forEach((employee) => {
+        employeeQuestion.choices.push({
+            value: employee.id,
+            name: employee.name,
+        });
+    });
+
+    const roleQuestion = updateEmployeeRoleQuestions[1];
+    roleResults.forEach((role) => {
+        roleQuestion.choices.push({
+            value: role.id,
+            name: role.title,
+        });
+    });
+
+    const response = await inquirer.prompt(updateEmployeeRoleQuestions);
+    const updateResults = await db.updateEmployeeRole(response);
+    console.log('\n', updateResults, '\n');
+    doMenuQuestions();
+};
 
 doMenuQuestions();
