@@ -11,24 +11,37 @@ const db = new EmployeeDatabase({
 
 db.connect();
 
-const menuOptions = {
-    'view_departments': view_departments,
-    'view_roles': view_roles,
-    'view_employees': view_employees,
-    'add_department': add_department,
-    'add_role': add_role,
-    'add_employee': add_employee,
-    'update_role': update_role,
-};
+const doMenuQuestions = () => {
 
-const doMenuQuestions = async () => {
-    const response = await inquirer.prompt(mainMenuQuestions);
-    const selectedOption = response.option;
-    const selectedFunction = menuOptions[selectedOption];
-    if (selectedFunction) {
-        selectedFunction();
-    }
-};
+    inquirer
+    .prompt(mainMenuQuestions)
+    .then((response) => {
+
+        switch (response.option) {
+            case 'view_departments':
+                view_departments();
+                break;
+            case 'view_roles':
+                view_roles();
+                break;
+            case 'view_employees':
+                view_employees();
+                break;
+            case 'add_department':
+                add_department();
+                break;
+            case 'add_role':
+                add_role();
+                break;
+            case 'add_employee':
+                add_employee();
+                break;
+            case 'update_role':
+                update_role();
+                break;
+        }
+    })
+}
 
 const view_departments = async () => {
     const results = await db.getDepartments();
