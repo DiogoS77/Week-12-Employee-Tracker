@@ -23,7 +23,7 @@ INSERT INTO role (id, title, salary, department_id) VALUES
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES
 (1, 'Lionel', 'Messi', 1, NULL),
 (2, 'Cristiano', 'Ronaldo', 2, 1),
-(3, 'Neymar', NULL, 3, 1),
+(3, 'Neymar', 'Junior', 3, 1),
 (4, 'Mohamed', 'Salah', 4, 1),
 (5, 'Kylian', 'Mbappe', 5, 1),
 (6, 'Luka', 'Modric', 6, 1),
