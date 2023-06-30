@@ -2,20 +2,20 @@ const inquirer = require('inquirer');
 
 const mainMenuQuestions = [
   {
-    type: 'list',
-    name: 'option',
-    message: 'What would you like to do?',
-    choices: [
-      "View all departments",
-      "View all roles",
-      "View all employees",
-      "Add a department",
-      "Add a role",
-      "Add an employee",
-      "Update an employee role",
-    ],
+      type: 'list',
+      name: 'option',
+      message: 'What would you like to do?',
+      choices: [
+          { value: 'view_departments', name: "view all departments" },
+          { value: 'view_roles', name: "view all roles" },
+          { value: 'view_employees', name: "view all employees" },
+          { value: 'add_department', name: "add a department" },
+          { value: 'add_role', name: "add a role" },
+          { value: 'add_employee', name: "add an employee" },
+          { value: 'update_role', name: "update an employee role" },
+      ],
   },
-];
+]
 
 const addDepartmentQuestions = [
   {
@@ -89,6 +89,7 @@ const updateEmployeeRoleQuestions = [
   ];
   
   module.exports = {
+    mainMenuQuestions,
     promptMainMenu: async () => {
       const answers = await inquirer.prompt(mainMenuQuestions);
       return answers.option;
