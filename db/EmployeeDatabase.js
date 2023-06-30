@@ -7,7 +7,7 @@ class EmployeeDatabase extends Database {
 
     async getDepartments() {
         try {
-            const results = await this.executeQuery('SELECT * FROM department');
+            const results = await this.db.promise().query('SELECT * FROM department');
             return results;
         } catch (error) {
             throw error;
@@ -16,7 +16,7 @@ class EmployeeDatabase extends Database {
 
     async getRoles() {
         try {
-            const results = await this.executeQuery(`
+            const results = await this.db.promise().query(`
                 SELECT role.id, role.title, CONCAT('£', FORMAT(salary, 0), 'p/a') as salary, department.name as department_name
                 FROM role
                 INNER JOIN department ON role.department_id = department.id
@@ -29,7 +29,7 @@ class EmployeeDatabase extends Database {
 
     async getEmployees() {
         try {
-            const results = await this.executeQuery(`
+            const results = await this.db.promise().query()(`
                 SELECT
                 employee.id,
                 CONCAT(employee.first_name, ' ', employee.last_name) as name,
@@ -50,7 +50,7 @@ class EmployeeDatabase extends Database {
 
     async addDepartment(department) {
         try {
-            const results = await this.executeInsert('department', { name: department.department_name });
+            const results = await this.db.promise().query('INSERT INTO department SET ?', { name: department.department_name });
             return `Department ${department.department_name} added successfully`;
         } catch (error) {
             throw error;
@@ -65,7 +65,7 @@ class EmployeeDatabase extends Database {
         };
 
         try {
-            const results = await this.executeInsert('role', roleData);
+            const results = await this.db.promise().query('INSERT INTO role SET ?', roleData);
             return `Role ${role.title} added successfully`;
         } catch (error) {
             throw error;
@@ -81,7 +81,7 @@ class EmployeeDatabase extends Database {
         };
 
         try {
-            const results = await this.executeInsert('employee', employeeData);
+            const results = await this.db.promise().query('INSERT INTO employee SET ?', employeeData);
             return `${employee.first_name} ${employee.last_name} added successfully`;
         } catch (error) {
             throw error;
@@ -90,7 +90,7 @@ class EmployeeDatabase extends Database {
 
     async updateEmployeeRole(employee) {
         try {
-            const results = await this.executeQuery('UPDATE employee SET role_id=? WHERE id=?', [employee.role_id, employee.employee_id]);
+            const results = await this.db.promise().query('UPDATE employee SET role_id=? WHERE id=?', [employee.role_id, employee.employee_id]);
             return results;
         } catch (error) {
             throw error;
