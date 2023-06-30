@@ -48,6 +48,54 @@ class EmployeeDatabase extends Database {
         }
     }
 
+    async addDepartment(department) {
+        try {
+            const results = await this.executeInsert('department', { name: department.department_name });
+            return `Department ${department.department_name} added successfully`;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async addRole(role) {
+        const roleData = {
+            title: role.title,
+            salary: role.salary,
+            department_id: role.department_id
+        };
+
+        try {
+            const results = await this.executeInsert('role', roleData);
+            return `Role ${role.title} added successfully`;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async addEmployee(employee) {
+        const employeeData = {
+            first_name: employee.first_name,
+            last_name: employee.last_name,
+            role_id: employee.role_id,
+            manager_id: employee.manager_id
+        };
+
+        try {
+            const results = await this.executeInsert('employee', employeeData);
+            return `${employee.first_name} ${employee.last_name} added successfully`;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async updateEmployeeRole(employee) {
+        try {
+            const results = await this.executeQuery('UPDATE employee SET role_id=? WHERE id=?', [employee.role_id, employee.employee_id]);
+            return results;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = EmployeeDatabase;
