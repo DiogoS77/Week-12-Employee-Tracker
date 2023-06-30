@@ -22,7 +22,7 @@ const menuOptions = {
 };
 
 const doMenuQuestions = async () => {
-    const response = await inquirer.prompt(MainMenuQuestions);
+    const response = await inquirer.prompt(mainMenuQuestions);
     const selectedOption = response.option;
     const selectedFunction = menuOptions[selectedOption];
     if (selectedFunction) {
@@ -47,6 +47,61 @@ const view_employees = async () => {
     console.table(results);
     doMenuQuestions();
 };
+
+const add_department = async () => {
+    const response = await inquirer.prompt(addDepartmentQuestions);
+    const results = await db.addDepartment(response);
+    console.log('\n', results, '\n');
+    doMenuQuestions();
+};
+
+const add_role = async () => {
+    const results = await db.getDepartments();
+    const departmentQuestion = addRoleQuestions[2];
+    results.forEach((department) => {
+        departmentQuestion.choices.push({
+            value: department.id,
+            name: department.name,
+        });
+    });
+
+    const response = await inquirer.prompt(addRoleQuestions);
+    const roleResults = await db.addRole(response);
+    console.log('\n', roleResults, '\n');
+    doMenuQuestions();
+};
+
+const add_employee = async () => {
+    const [roleResults, employeeList] = await Promise.all([db.getRoles(), db.getEmployees()]);
+
+    const roleQuestion = addEmployeeQuestions[2];
+    roleResults.forEach((role) => {
+        const role_summary = `${role.title} (${role.department_name}: ${role.salary})`;
+        roleQuestion.choices.push({
+            value: role.id,
+            name: role_summary,
+        });
+    });
+
+    const managerQuestion = addEmployeeQuestions[3];
+    employeeList.forEach((employee) => {
+        managerQuestion.choices.push({
+            value: employee.id,
+            name: employee.name,
+        });
+    });
+
+    managerQuestion.choices.push({
+        value: null,
+        name: 'None',
+    });
+
+    const response = await inquirer.prompt(addEmployeeQuestions);
+    const employeeResults = await db.addEmployee(response);
+    console.log('\n', employeeResults, '\n');
+    doMenuQuestions();
+};
+
 
 
 doMenuQuestions();
