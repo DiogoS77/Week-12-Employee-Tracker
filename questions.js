@@ -88,38 +88,4 @@ const updateEmployeeRoleQuestions = [
     },
   ];
   
-  module.exports = {
-    mainMenuQuestions,
-    promptMainMenu: async () => {
-      const answers = await inquirer.prompt(mainMenuQuestions);
-      return answers.option;
-    },
-  
-    promptAddDepartment: async () => {
-      const answers = await inquirer.prompt(addDepartmentQuestions);
-      return answers.department_name;
-    },
-  
-    promptAddRole: async (departments) => {
-      const roleQuestions = JSON.parse(JSON.stringify(addRoleQuestions));
-      roleQuestions[2].choices = departments;
-      const answers = await inquirer.prompt(roleQuestions);
-      return answers;
-    },
-  
-    promptAddEmployee: async (roles, employees) => {
-      const employeeQuestions = JSON.parse(JSON.stringify(addEmployeeQuestions));
-      employeeQuestions[2].choices = roles;
-      employeeQuestions[3].choices = employees;
-      const answers = await inquirer.prompt(employeeQuestions);
-      return answers;
-    },
-  
-    promptUpdateEmployeeRole: async (employees, roles) => {
-      const updateQuestions = JSON.parse(JSON.stringify(updateEmployeeRoleQuestions));
-      updateQuestions[0].choices = employees;
-      updateQuestions[1].choices = roles;
-      const answers = await inquirer.prompt(updateQuestions);
-      return answers;
-    },
-  };
+  module.exports = { mainMenuQuestions, addDepartmentQuestions, addRoleQuestions, addEmployeeQuestions, updateEmployeeRoleQuestions };
