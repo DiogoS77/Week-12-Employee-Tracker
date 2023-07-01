@@ -36,6 +36,7 @@ class EmployeeDatabase extends Database {
             SELECT role.id, role.title, CONCAT('£', FORMAT(salary, 0), 'p/a') as salary, department.name as department_name
             FROM role
             INNER JOIN department ON role.department_id = department.id
+            ORDER BY id
         `;
         try {
             const results = await this.executeQuery(query);
@@ -58,6 +59,7 @@ class EmployeeDatabase extends Database {
             INNER JOIN role ON employee.role_id = role.id
             INNER JOIN department ON role.department_id = department.id
             LEFT JOIN employee as manager ON employee.manager_id = manager.id
+            ORDER BY id
         `;
         try {
             const results = await this.executeQuery(query);
