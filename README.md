@@ -62,7 +62,7 @@ npm i mysql2
 
 TO use this repository is pretty simple. All you just have to do is clone it, and soon as you clone it you will neeed to open your terminal and run (npm i inquirer@8.2.4) and (npm i mysql2). Soon as you runned this 2 commands you will need to run your mysql and login by running the command (mysql -u root -p) then you will be asked for your mysql password that you will have to insert. After getting in on mysql you will have to run the follow commands (source/db/schema.sql) and after that you will run (source/db/seeds.sql). After running those you just leave by typing (quit;) and then you can run node index.js to get the options like view department, view roles, view employees , add (role,employee,department) and the update employee role.
 
-![End Result](./images/new-note.png)
+![End Result](./images/Viewall.jpg)
 
 ## Tests
 
