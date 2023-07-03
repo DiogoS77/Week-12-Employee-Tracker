@@ -124,3 +124,16 @@ class EmployeeDatabase extends Database {
 }
 
 module.exports = EmployeeDatabase;
+
+//The EmployeeDatabase class is defined, extending the Database class using the extends keyword. It inherits the properties and methods from the Database class.
+//The constructor method of EmployeeDatabase calls the parent class constructor (super(options)) to initialize the database connection using the provided options.
+//The executeQuery method is defined to execute a SQL query asynchronously using the db.query method provided by the mysql2 library. It returns a promise that resolves with the query results or rejects with an error.
+//The getDepartments, getRoles, and getEmployees methods retrieve the corresponding data from the database by executing the respective SQL queries asynchronously using the executeQuery method.
+//The addDepartment, addRole, and addEmployee methods insert new department, role, and employee records into the database using the INSERT INTO SQL statements. 
+//They use the executeQuery method to execute the queries with the necessary parameters.
+//The updateEmployeeRole method updates the role of an employee in the database using the UPDATE SQL statement. 
+//It uses the executeQuery method to execute the query with the necessary parameters.
+//Each method wraps the database query execution in a try-catch block to handle any errors that may occur. If an error occurs, it is thrown and propagated to the calling code.
+//Finally, the EmployeeDatabase class is exported as a module using module.exports, making it available for use in other files.
+//In summary, this code extends the Database class to create an EmployeeDatabase class that provides methods for interacting with an employee database. 
+//It encapsulates the execution of SQL queries and handles any errors that may occur during the process.

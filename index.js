@@ -141,3 +141,14 @@ const update_role = async () => {
 };
 
 doMenuQuestions();
+
+//The code imports the inquirer module, the question sets defined in questions.js, and the EmployeeDatabase class.
+//An instance of the EmployeeDatabase class is created, passing the necessary configuration options for connecting to the database.
+//The db.connect() method is called to establish a connection with the database.
+//The doMenuQuestions function is defined. It uses inquirer to prompt the user with the main menu questions defined in mainMenuQuestions and performs different actions based on the user's choice.
+//Functions like view_departments, view_roles, view_employees, add_department, add_role, add_employee, and update_role are defined. 
+//These functions interact with the EmployeeDatabase instance to retrieve data or perform actions based on the user's selection. After performing the action, they call doMenuQuestions to prompt the user with the main menu again.
+//The doMenuQuestions function is called at the end of the code to initiate the main menu prompt.
+//In summary, this code combines the use of inquirer for interactive prompts, the EmployeeDatabase class for database operations, and the defined question sets to create a command-line interface for managing employees. 
+//The user can view departments, roles, and employees, add new departments, roles, and employees, and update an employee's role by navigating through the menu options presented by the inquirer prompts. 
+//The actual operations are performed using the methods provided by the EmployeeDatabase instance, utilizing the power of SQL queries and database connections.

@@ -89,3 +89,14 @@ const updateEmployeeRoleQuestions = [
   ];
   
   module.exports = { mainMenuQuestions, addDepartmentQuestions, addRoleQuestions, addEmployeeQuestions, updateEmployeeRoleQuestions };
+
+
+//The code imports the inquirer module.
+//mainMenuQuestions is an array of objects representing the questions to be presented in the main menu. 
+//Each object has properties such as type (the type of the question), name (the name to identify the user's answer), message (the question text), and choices (the available options for the user). 
+//The options are defined using an array of objects with value and name properties.
+//addDepartmentQuestions, addRoleQuestions, addEmployeeQuestions, and updateEmployeeRoleQuestions are arrays of objects representing the questions for adding a department, adding a role, adding an employee, and updating an employee's role, respectively. 
+//These question arrays follow a similar structure as mainMenuQuestions but with different properties based on the specific information needed.
+//Finally, all the question arrays are exported as modules using module.exports so that they can be imported and used in other files.
+//In summary, this code defines sets of questions for different operations in an employee management system, such as viewing departments, roles, and employees, adding departments, roles, and employees, and updating an employee's role.
+//These questions can be used in conjunction with the inquirer module to prompt the user for input and gather information for further processing.
